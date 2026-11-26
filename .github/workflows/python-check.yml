@@ -1,0 +1,23 @@
+name: python-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository files
+        uses: actions/checkout@v6
+      - name: Select Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.x"
+      - name: Check Python syntax
+        run: python -m py_compile hello.py
